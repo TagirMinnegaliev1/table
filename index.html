@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Интерактивные таблицы</title>
+ </head>
+ <body>  
+  <table width="100%" border="1" cellspacing="0" cellpadding="4">
+   <caption>Таблица 3.2. Питание</caption>  
+   <tr> 
+    <th>&nbsp;</th><th>Чебурашка</th>
+    <th>Крокодил Гена</th><th>Шапокляк</th>
+   </tr>
+   <tr> 
+    <td>Съел, пнд.</td>
+	<td><span class="dynamic"><img src="z.png" height="50"><img src="v.png" height="50"><img src="m.png" height="50"><img src="l.png" height="50"></span></td>
+	<td><span class="dynamic"><img src="z.png" height="50"><img src="v.png" height="50"><img src="m.png" height="50"><img src="l.png" height="50"></span></td>
+	<td><span class="dynamic"><img src="z.png" height="50"><img src="v.png" height="50"><img src="m.png" height="50"><img src="l.png" height="50"></span></td>
+   </tr>
+   <tr> 
+    <td>Съел, вторник.</td>
+	<td><span class="dynamic"><img src="z.png" height="50"><img src="v.png" height="50"><img src="m.png" height="50"><img src="l.png" height="50"></span></td>
+	<td><span class="dynamic"><img src="z.png" height="50"><img src="v.png" height="50"><img src="m.png" height="50"><img src="l.png" height="50"></span></td>
+	<td><span class="dynamic"><img src="z.png" height="50"><img src="v.png" height="50"><img src="m.png" height="50"><img src="l.png" height="50"></span></td>
+   </tr>
+   <tr> 
+    <td>Съел, среда</td>
+	<td><span class="dynamic"><img src="z.png" height="50"><img src="v.png" height="50"><img src="m.png" height="50"><img src="l.png" height="50"></span></td>
+	<td><span class="dynamic"><img src="z.png" height="50"><img src="v.png" height="50"><img src="m.png" height="50"><img src="l.png" height="50"></span></td>
+	<td><span class="dynamic"><img src="z.png" height="50"><img src="v.png" height="50"><img src="m.png" height="50"><img src="l.png" height="50"></span></td>
+   </tr>
+  </table>
+ </body>
+</html>
+
+
+
+
+<script>
+
+var elems = document.getElementsByClassName("dynamic"),
+ trampInput = document.createElement("input");
+ istdselect = false;
+            trampInput.type = "text";
+            trampInput.style.width = "128px";
+            trampInput.addEventListener("blur", function() {
+				let innerText = trampInput.value;
+				/*innerText = innerText.replace( /Я/gi, "<img src=\"strawberry.png\">" );
+				innerText = innerText.replace( /В/gi, "<img src=\"grape.png\">" );
+				innerText = innerText.replace( /Б/gi, "<img src=\"banana.png\">" );*/
+				innerText = innerText.replace( /З/gi, "<img src=\"z.png\" height=\"50\">" );	
+				innerText = innerText.replace( /В/gi, "<img src=\"v.png\" height=\"50\">" );	
+				innerText = innerText.replace( /М/gi, "<img src=\"m.png\" height=\"50\">" );	
+				innerText = innerText.replace( /Л/gi, "<img src=\"l.png\" height=\"50\">" );	
+				trampInput.parentNode.innerHTML = innerText;
+				istdselect = false;	
+			}
+            , false);
+for (var i=0; i<elems.length; i++) {
+    var el = elems[i];
+    el.addEventListener("click", function() {
+        if (istdselect) return;
+		istdselect = true;
+		let innerText = this.innerHTML;
+		/*innerText = innerText.replace( /<img src=\"strawberry.png\">/gi, "Я" );
+		innerText = innerText.replace( /<img src=\"grape.png\">/gi, "В" );
+		innerText = innerText.replace( /<img src=\"banana.png\">/gi, "Б" );*/
+		innerText = innerText.replace( /<img src=\"z.png\" height=\"50\">/gi, "З" );
+		innerText = innerText.replace( /<img src=\"v.png\" height=\"50\">/gi, "В" );
+		innerText = innerText.replace( /<img src=\"m.png\" height=\"50\">/gi, "М" );
+		innerText = innerText.replace( /<img src=\"l.png\" height=\"50\">/gi, "Л" );
+        trampInput.value = innerText;
+        this.innerHTML = "";
+        this.appendChild(trampInput);
+        trampInput.focus();
+        trampInput.select()
+		}.bind(el), false);
+	};
+	
+</script>
